@@ -63,6 +63,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     // http 요청의 Header를 파싱해서 Bearer 토큰을 리턴한다.
+    // view 단에서도 똑같이 맵핑해줘야 한다.
     private String ParseBearerToken (HttpServletRequest request) {
         // http 요청 Header에서 파싱
         String bearerToken = request.getHeader("Authorization");  // token의 key name

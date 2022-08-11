@@ -71,11 +71,15 @@ public class TodoController {
 
     // 수정 ( Update Todo 구현 )
     @PutMapping
-    public ResponseEntity<?> updateTodo(@RequestBody TodoDTO dto) {
-        String temporaryUserId = "temporary-user";
+    public ResponseEntity<?> updateTodo(@AuthenticationPrincipal String userId, @RequestBody TodoDTO dto) {
+                    // @AuthenticationPrincipal
+                    // 만약 현재 참조 중인 객체가 AnoonymousAuthenticaionFilter에 의해
+                    // 생성된 Authentication 인 경우 null을 반환하고
+                    // 아니라면 user 객체를 반환
+//        String temporaryUserId = "temporary-user";
 
         TodoEntity entity = TodoDTO.toEntity(dto);
-        entity.setUserId(temporaryUserId);
+        entity.setUserId(userId);
         List<TodoEntity> entities = service.update(entity);
         List<TodoDTO> dtos = entities.stream().map(TodoDTO::new).collect(Collectors.toList());
 

@@ -16,7 +16,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:4001","http://192.168.219.101:4001")
+                .allowedOrigins("http://localhost:4001","http://192.168.219.101:4001","http://192.168.0.185:4001")
                 .allowedMethods("GET","POST","PUT","DELETE","PATCH","OPTIONS")
                 .allowedHeaders("*")
                 .maxAge(MAX_AGE_SECS); //유효시간
